@@ -1,14 +1,14 @@
 
 import { GoogleGenAI } from "@google/genai";
 import { FAQ_DATA, SYSTEM_INSTRUCTION } from '../constants';
-
+const api_key = process.env.API_KEY;
 // Ensure the API key is available, but do not handle its input in the UI.
-if (!process.env.API_KEY) {
+if (!api_key) {
   // This will be caught by the App component's error handling.
   throw new Error("API_KEY environment variable not set.");
 }
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey:api_key});
 
 export const getChatbotResponse = async (query: string): Promise<string> => {
   try {
